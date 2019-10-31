@@ -3,14 +3,13 @@ package appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class NavigationHelper {
-   private FirefoxDriver wb;
+public class NavigationHelper extends HelperBase {
 
    public NavigationHelper(FirefoxDriver wb) {
-      this.wb = wb;
+      super(wb);
    }
 
    public void gotoGroupPage() {
-     wb.findElement(By.linkText("groups")).click();
+      click(By.linkText("groups"));
    }
 }
