@@ -2,12 +2,13 @@ package appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class HelperBase {
-   protected FirefoxDriver wb;
+   WebDriver wb;
 
-   public HelperBase(FirefoxDriver wb) {
+   public HelperBase(WebDriver wb) {
       this.wb = wb;
    }
 
