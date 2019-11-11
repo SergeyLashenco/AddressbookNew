@@ -41,7 +41,7 @@ public class ApplicationManager {
 
 
       // baseUrl = "https://www.katalon.com/";
-      wb.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+      wb.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
       groupHelper = new GroupHelper(wb);
       navigationHelper = new NavigationHelper(wb);
       sessionHelper = new SessionHelper(wb);
