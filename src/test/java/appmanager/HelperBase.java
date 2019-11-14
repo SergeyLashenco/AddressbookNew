@@ -19,9 +19,9 @@ public class HelperBase {
 
    protected void type(By locator, String text) {
       click(locator);
-      if ( text != null){
+      if (text != null) {
          String existingText = wb.findElement(locator).getAttribute("value");
-         if (! text.equals(existingText)){
+         if (!text.equals(existingText)) {
             wb.findElement(locator).clear();
             wb.findElement(locator).sendKeys(text);
          }
@@ -42,7 +42,7 @@ public class HelperBase {
       try {
          wb.findElement(locator);
          return true;
-      }catch (NoSuchElementException ex ){
+      } catch (NoSuchElementException ex) {
          return false;
       }
 

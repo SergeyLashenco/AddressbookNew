@@ -11,10 +11,18 @@ public class NavigationHelper extends HelperBase {
    }
 
    public void gotoGroupPage() {
+      if (isElementpresent(By.tagName("h1"))
+              && wb.findElement(By.tagName("h1")).getText().equals("Groups")
+              && isElementpresent(By.name("new"))) {
+         return;
+      }
       click(By.linkText("groups"));
    }
 
    public void gotoHomePage() {
-    click(By.linkText("home"));
+      if (isElementpresent(By.id("maintable"))) {
+         return;
+      }
+      click(By.linkText("home"));
    }
 }

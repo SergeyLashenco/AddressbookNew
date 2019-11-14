@@ -2,9 +2,8 @@ package appmanager;
 
 import model.GroupData;
 import org.openqa.selenium.By;
-//import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+
 
 public class GroupHelper extends  HelperBase{
 
@@ -44,5 +43,17 @@ public class GroupHelper extends  HelperBase{
 
    public void submitGroupModification() {
       click(By.name("update"));
+   }
+
+   public boolean isThereAGroup() {
+
+      return isElementpresent(By.name("selected[]"));
+   }
+
+   public void createGruop(GroupData group) {
+      initGroupCreation();
+      fillGroupForm(group);
+      submitGroupCreation();
+      returnToGroupPage();
    }
 }
