@@ -6,15 +6,25 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class SessionHelper extends HelperBase{
 
+
+
    SessionHelper(WebDriver wb) {
       super( wb);
    }
 
 
    public void login(String userName, String password) {
-      wb.get("http://localhost/addressbook/index.php");
-      type(By.name("user") , userName);
-      type( By.name("pass") , password );
-      click(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Password:'])[1]/following::input[2]"));
+
+      try {
+         wb.get("http://localhost/addressbook/index.php");
+         type(By.name("user") , userName);
+         type( By.name("pass") , password );
+         click(By.xpath(
+                 "(.//*[normalize-space(text()) and normalize-space(.)='Password:'])[1]/following::input[2]"));
+      } catch (Exception ex) {
+         System.out.println(" На данный момент не запущен XAMP авторизация не возможна");
+        ex.printStackTrace();
+        wb.quit();
+      }
    }
 }
