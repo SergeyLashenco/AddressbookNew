@@ -44,5 +44,15 @@ public class ContactHelper extends  HelperBase {
    }
 
 
+   public boolean isThereAContact() {
+      return isElementpresent(By.cssSelector("img[alt='Edit']"));
+   }
+
+   public void creationContact(ContactData contactData , boolean creation ) {
+     initContactCreation();
+     fillContactForm(contactData , creation);
+     submitContactCreation();
+     returnToHomepage();
+   }
 
 }
