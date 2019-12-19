@@ -2,7 +2,6 @@ package appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class NavigationHelper extends HelperBase {
 
@@ -10,7 +9,7 @@ public class NavigationHelper extends HelperBase {
       super(wb);
    }
 
-   public void gotoGroupPage() {
+   public void groupPage() {
       if (isElementpresent(By.tagName("h1"))
               && wb.findElement(By.tagName("h1")).getText().equals("Groups")
               && isElementpresent(By.name("new"))) {

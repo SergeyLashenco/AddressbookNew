@@ -4,23 +4,24 @@ import model.GroupData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.HashSet;
+import java.util.Comparator;
 import java.util.List;
 
 public class GroupCreatTests extends TestBase {
 
    @Test
-   public void testGroupCreation() throws Exception {
-      app.getNavigationHelper().gotoGroupPage();
-      List<GroupData> before = app.getGroupHelper().getGroupList();
+   public void testGroupCreation() {
+      app.goTo().groupPage();
+      List<GroupData> before = app.group().list();
       GroupData group = new GroupData("test7", null, null);
-      app.getGroupHelper().createGruop(group);
-      List<GroupData> after = app.getGroupHelper().getGroupList();
+      app.group().create(group);
+      List<GroupData> after = app.group().list();
       Assert.assertEquals(after.size(), before.size() + 1);
 
-      group.setId(after.stream().max((groupData, t1)
-              -> Integer.compare(groupData.getId(), t1.getId())).get().getId());
       before.add(group);
-      Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+      Comparator<? super GroupData> byId = Comparator.comparingInt(GroupData::getId);
+      before.sort(byId);
+      after.sort(byId);
+      Assert.assertEquals(before, after);
    }
 }
