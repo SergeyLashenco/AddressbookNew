@@ -19,7 +19,7 @@ public class GroupDeletionTests extends TestBase {
    }
 
 
-   @Test
+   @Test (priority = 1)
    public void testGroupDeletion() {
       List<GroupData> before = app.group().list();
       int index = before.size() - 1;
