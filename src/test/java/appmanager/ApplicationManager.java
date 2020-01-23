@@ -25,8 +25,8 @@ public class ApplicationManager {
 
 
    public void init() {
-      File file = new File("./src/drivers/geckodriver");
-      System.setProperty("webdriver.gecko.driver", file.getAbsolutePath());
+      File file = new File("./src/drivers/chromedriver");
+      System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
       switch (browser) {
          case BrowserType.FIREFOX:
             wb = new FirefoxDriver();
