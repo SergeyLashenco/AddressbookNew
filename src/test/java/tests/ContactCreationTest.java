@@ -3,16 +3,22 @@ package tests;
 import model.ContactData;
 import org.testng.annotations.Test;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 public class ContactCreationTest extends  TestBase {
 
-   @Test (enabled = false)
+   @Test ()
    public  void testContactCreation(){
       app.goTo().gotoHomePage();
-      app.getContactHelper().initContactCreation();
-      app.getContactHelper().fillContactForm(
-              new ContactData("test_name", "test_surname","test1") , true);
-      app.getContactHelper().submitContactCreation();
-      app.getContactHelper().returnToHomepage();
+      app.contact().initContactCreation();
+      app.contact().fillContactForm(
+              new ContactData()
+              .withFirstname("aaa")
+              .withLastname("adawd")
+              .withGroup("test1"), true);
+      app.contact().submitContactCreation();
+      app.contact().returnToHomepage();
 
 
    }
