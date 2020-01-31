@@ -67,9 +67,10 @@ public class ContactHelper extends HelperBase {
             int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
             String lastname = cells.get(1).getText();
             String firstname = cells.get(2).getText();
+            String allphones = cells.get(5).getText();
 
-
-            contacts.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname));
+            contacts.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname)
+            .withAllPhones(allphones));
         }
         return contacts;
     }
