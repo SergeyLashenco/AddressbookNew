@@ -3,8 +3,7 @@ package tests;
 import model.ContactData;
 import org.testng.annotations.Test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
+import java.io.File;
 
 public class ContactCreationTest extends  TestBase {
 
@@ -12,15 +11,16 @@ public class ContactCreationTest extends  TestBase {
    public  void testContactCreation(){
       app.goTo().gotoHomePage();
       app.contact().initContactCreation();
+      File photo = new File("src/test/resources/testWarPhoto.png");
       app.contact().fillContactForm(
               new ContactData()
-              .withFirstname("aaa")
-              .withLastname("adawd")
+              .withFirstname("SergeyWar")
+              .withLastname("SergeyWarNew")
+              .withPhoto(photo)
               .withGroup("test1"), true);
       app.contact().submitContactCreation();
       app.contact().returnToHomepage();
 
 
    }
-
 }
