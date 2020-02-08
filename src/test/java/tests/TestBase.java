@@ -20,10 +20,10 @@ import java.util.stream.Collectors;
 public class TestBase {
 
 
-   protected static final ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
-
+   protected static final ApplicationManager app
+           = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
    @BeforeSuite
-   public void setUp() {
+   public void setUp() throws IOException {
       app.init();
    }
 
