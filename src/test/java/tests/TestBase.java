@@ -1,9 +1,21 @@
 package tests;
 
 import appmanager.ApplicationManager;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import model.GroupData;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.DataProvider;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class TestBase {
 
@@ -20,6 +32,4 @@ public class TestBase {
       app.stop();
 
    }
-
-
 }
