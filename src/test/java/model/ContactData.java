@@ -1,26 +1,54 @@
 package model;
 
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
 import java.io.File;
 import java.util.Objects;
 
+@Entity
+@Table(name = "addressbook")
 public class ContactData {
+
+    @Id
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "firstname")
     private String firstname;
+
+    @Column(name = "lastname")
     private String lastname;
+
+    @Transient
     private String group;
+
+    @Column(name = "home")
+    @Type(type = "text")
     private String homePhone;
+
+    @Column(name = "mobile")
+    @Type(type = "text")
     private String mobilePhone;
+
+    @Column(name = "work")
+    @Type(type = "text")
     private String workPhone;
-    private  String allPhones;
-    private File photo;
+
+    @Transient
+    private String allPhones;
+
+    @Column(name = "photo")
+    @Type(type = "text")
+    private String photo;
 
 
     public File getPhoto() {
-        return photo;
+        return new File(photo);
     }
 
     public ContactData withPhoto(File photo) {
-        this.photo = photo;
+        this.photo = photo.getPath();
         return this;
     }
 
@@ -33,7 +61,7 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withId(int  id) {
+    public ContactData withId(int id) {
         this.id = id;
         return this;
     }
@@ -53,38 +81,38 @@ public class ContactData {
         return this;
     }
 
-   public ContactData withHomePhone(String homePhone) {
-      this.homePhone = homePhone;
-      return this;
-   }
+    public ContactData withHomePhone(String homePhone) {
+        this.homePhone = homePhone;
+        return this;
+    }
 
-   public ContactData withMobilePhone(String mobilePhone) {
-      this.mobilePhone = mobilePhone;
-      return this;
-   }
+    public ContactData withMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
+        return this;
+    }
 
-   public ContactData withWorkPhone(String workPhone) {
-      this.workPhone = workPhone;
-      return this;
-   }
+    public ContactData withWorkPhone(String workPhone) {
+        this.workPhone = workPhone;
+        return this;
+    }
 
     public int getId() {
         return id;
     }
 
     public String getHomePhone() {
-      return homePhone;
-   }
+        return homePhone;
+    }
 
-   public String getMobilePhone() {
-      return mobilePhone;
-   }
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
 
-   public String getWorkPhone() {
-      return workPhone;
-   }
+    public String getWorkPhone() {
+        return workPhone;
+    }
 
-   public String getFirstname() {
+    public String getFirstname() {
         return firstname;
     }
 
@@ -100,8 +128,9 @@ public class ContactData {
     @Override
     public String toString() {
         return "ContactData{" +
-                "firstname='" + firstname + '\'' +
-                ", secondname='" + lastname + '\'' +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
                 '}';
     }
 
