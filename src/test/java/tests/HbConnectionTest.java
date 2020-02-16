@@ -1,24 +1,26 @@
 package tests;
 
 import model.ContactData;
-import model.GroupData;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
 public class HbConnectionTest {
-
+    Logger logger = LoggerFactory.getLogger(TestBase.class);
     private SessionFactory sessionFactory;
 
     @BeforeClass
     protected void setUp() {
         // A SessionFactory is set up once for an application!
+        logger.info("Start  Session  Db");
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure() // configures settings from hibernate.cfg.xml
                 .build();
