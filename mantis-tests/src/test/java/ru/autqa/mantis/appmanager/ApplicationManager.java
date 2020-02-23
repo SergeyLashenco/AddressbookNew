@@ -1,5 +1,6 @@
 package ru.autqa.mantis.appmanager;
 
+import com.sun.xml.bind.v2.TODO;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -17,6 +18,7 @@ public class ApplicationManager {
     private   WebDriver wd;
     private String browser;
     private RegistrationHelper registrationHelper;
+    private FtpHelper ftp;
 
 
     public ApplicationManager(String browser) {
@@ -53,6 +55,13 @@ public class ApplicationManager {
       return registrationHelper;
     }
 
+    public FtpHelper ftp (){
+        if (ftp == null) {
+            ftp =   new FtpHelper(this);
+        }
+        return ftp;
+    }
+
     //Линивая инициализация Веб Дривера , драйвер будет инициализирован только тогда когда кто то вызовет этот метод. Из за этого делаем  private   WebDriver wd;
     // В методе public void init() будет загружатся только конфигурационный файл и все.
     public WebDriver getDriver() {
@@ -69,7 +78,8 @@ public class ApplicationManager {
                     break;
             }
             wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-            wd.get(properties.getProperty("web.baseUrl"));
+            //TODO здесь требуется оптимизировать код
+            //wd.get(properties.getProperty("web.baseUrl"));
         }
         return wd;
     }
