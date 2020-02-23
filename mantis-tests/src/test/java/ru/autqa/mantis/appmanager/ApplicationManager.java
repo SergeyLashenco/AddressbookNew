@@ -14,8 +14,9 @@ import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
     private final Properties properties;
-    private WebDriver wb;
+    private   WebDriver wd;
     private String browser;
+    private RegistrationHelper registrationHelper;
 
 
     public ApplicationManager(String browser) {
@@ -30,22 +31,46 @@ public class ApplicationManager {
 
         File file = new File("./src/drivers/chromedriver");
         System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
-        switch (browser) {
-            case BrowserType.FIREFOX:
-                wb = new FirefoxDriver();
-                break;
-            case BrowserType.CHROME:
-                wb = new ChromeDriver();
-                break;
-            case BrowserType.IE:
-                wb = new InternetExplorerDriver();
-                break;
-        }
-        wb.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        wb.get(properties.getProperty("web.baseUrl"));
     }
 
     public void stop() {
-        wb.quit();
+        if (wd != null){
+            wd.quit();
+        }
+    }
+
+    public HttpSession newSession (){
+        return new  HttpSession (this);
+    }
+    public String getProperty(String key){
+        return properties.getProperty(key);
+    }
+
+    public RegistrationHelper registration() {
+        if (registrationHelper == null) {
+            registrationHelper = new RegistrationHelper(this);
+        }
+      return registrationHelper;
+    }
+
+    //Линивая инициализация Веб Дривера , драйвер будет инициализирован только тогда когда кто то вызовет этот метод. Из за этого делаем  private   WebDriver wd;
+    // В методе public void init() будет загружатся только конфигурационный файл и все.
+    public WebDriver getDriver() {
+        if (wd == null){
+            switch (browser) {
+                case BrowserType.FIREFOX:
+                    wd = new FirefoxDriver();
+                    break;
+                case BrowserType.CHROME:
+                    wd = new ChromeDriver();
+                    break;
+                case BrowserType.IE:
+                    wd = new InternetExplorerDriver();
+                    break;
+            }
+            wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+            wd.get(properties.getProperty("web.baseUrl"));
+        }
+        return wd;
     }
 }
