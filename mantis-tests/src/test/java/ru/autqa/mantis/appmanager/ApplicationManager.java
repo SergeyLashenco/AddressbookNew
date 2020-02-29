@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
     private final Properties properties;
-    private   WebDriver wd;
+    private WebDriver wd;
     private String browser;
     private RegistrationHelper registrationHelper;
     private FtpHelper ftp;
@@ -80,7 +80,7 @@ public class ApplicationManager {
             }
             wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
             //TODO здесь требуется оптимизировать код
-            //wd.get(properties.getProperty("web.baseUrl"));
+            wd.get(properties.getProperty("web.baseUrl"));
         }
         return wd;
     }

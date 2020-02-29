@@ -55,8 +55,10 @@ public class GroupDataGenerator {
         }
     }
 
+    //-f src/test/resources/groups.json -c 5 -d json  Параметры запуска GroupDataGenerator для json
     private void saveAsJson(List<GroupData> groups, File file) throws IOException {
-        Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();//сериализация json в более читаемом виде
+        Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();//сериализация json в более читаемом виде(excludeFieldsWithoutExposeAnnotation пропускает все поля
+        // которые не помеченные аннотацией Expose )
         String json = gson.toJson(groups);
         try ( Writer writer = new FileWriter(file))
         {
