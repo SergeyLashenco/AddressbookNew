@@ -31,6 +31,10 @@ test
             useTestNG()
         }
 
+
+
+
+/*
 test {
     useTestNG{
        /// suites 'src/test/resources/testng.xml'
@@ -46,3 +50,4 @@ test {
         systemProperty 'verifyUI', "${verifyUI}"
     }
 }
+ */
